@@ -51,7 +51,7 @@ gcode:
 
 The only thing left is to add the following command to your print end macro, that will set a 30 second timer:
 ```
-	UPDATE_DELAYED_GCODE ID=POWER_OFF_PRINTER_CHECK DURATION=30
+UPDATE_DELAYED_GCODE ID=POWER_OFF_PRINTER_CHECK DURATION=30
 ```
 
 And that is it. Now after your print has finished, the printer will cooldown and once the temperature is below 50 degrees Celsius it will self-shutdown.
