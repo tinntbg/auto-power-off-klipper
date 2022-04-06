@@ -1,7 +1,7 @@
 # Description
-This is just a guide on how to configure automatic power off for a klipper 3d printer after a print has finished and the bed and toolhead are cooled. I was wasn't able to find a guide for this, so I decided to write one. 
+This is just a guide on how to configure automatic power off for a klipper 3d printer after a print has finished and the bed and toolhead are cooled. I couldn’t find a guide for this, so I decided to write one. 
 
-To start with you would need to add a switch to your printer power. I'm using a Tasmota device, but you can use any device that you have. Here is a current list of avalalbe integrations for moonraker - gpio, klipper_device, rf, tplink_smartplug, tasmota, shelly, homeseer, homeassistant, loxonev1, smartthings, or mqtt. [Moonraker documentation](https://moonraker.readthedocs.io/en/latest/configuration/#power)
+To start with you would need to add a switch to your printer power. I'm using a Tasmota device, but you can use any device that you have. Here is a current list of available integrations for moonraker - gpio, klipper_device, rf, tplink_smartplug, tasmota, shelly, homeseer, homeassistant, loxonev1, smartthings, or mqtt. [Moonraker documentation](https://moonraker.readthedocs.io/en/latest/configuration/#power)
 
 # Moonraker configuration 
 First you would need to start by updating your moonraker configuration and adding this to the end of the file for a tasmota device, check moonraker documentation for configuring other options:
@@ -23,7 +23,7 @@ gcode:
                              state="off")}
 ```
 
-After that we would need to create a delayed gcode macro. In this macro will add logic that will check if both the bed and the hotend are bellow 50 degreece. 
+After that we would need to create a delayed gcode macro. In this macro will add logic that will check if both the bed and the hot end are below 50 degrees Celsius. If you start printing or start heating up the bed or hot end the automatic shutdown will be stopped. 
 ```
 [delayed_gcode POWER_OFF_PRINTER_CHECK]
 gcode:
@@ -49,9 +49,9 @@ gcode:
   {% endif %}
 ```
 
-The only thing left is to add the following command to your print end macro, that will set a 30 seconds timer:
+The only thing left is to add the following command to your print end macro, that will set a 30 second timer:
 ```
 	UPDATE_DELAYED_GCODE ID=POWER_OFF_PRINTER_CHECK DURATION=30
 ```
 
-And that is it. Now after your print has finished, the printer will cooldown and once the temperature is bellow 50 degreece it will self shutdown. 
+And that is it. Now after your print has finished, the printer will cooldown and once the temperature is below 50 degrees Celsius it will self-shutdown.
