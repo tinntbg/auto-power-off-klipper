@@ -55,3 +55,24 @@ UPDATE_DELAYED_GCODE ID=POWER_OFF_PRINTER_CHECK DURATION=30
 ```
 
 And that is it. Now after your print has finished, the printer will cooldown and once the temperature is below 50 degrees Celsius it will self-shutdown.
+
+# Post Print Start Power OFF checks:
+In order to achive this you would need to add the following Macros:
+```
+[gcode_macro ACTIVATE_POWER_OFF]
+gcode:
+    UPDATE_DELAYED_GCODE ID=POWER_OFF_PRINTER_CHECK_ACT DURATION=60
+
+[gcode_macro DEACTIVATE_POWER_OFF]
+gcode:
+    UPDATE_DELAYED_GCODE ID=POWER_OFF_PRINTER_CHECK_ACT DURATION=0
+
+[delayed_gcode POWER_OFF_PRINTER_CHECK_ACT]
+gcode:
+  {% if printer.idle_timeout.state == "Idle" or printer.idle_timeout.state == "Ready" %}
+    UPDATE_DELAYED_GCODE ID=POWER_OFF_PRINTER_CHECK DURATION=30
+  {% else %}
+    UPDATE_DELAYED_GCODE ID=POWER_OFF_PRINTER_CHECK_ACT DURATION=60
+  {% endif %}
+```
+By clicking running Activate Power Off macro while the printer is running the macro will check every 60 seconds if the printer has finished. 
