@@ -33,7 +33,12 @@ gcode:
                              device="tasmota_plug",
                              state="off")}
 ```
-
+   Or for ON-OFF control using a Relay then:
+```
+[gcode_macro _POWER_OFF_PRINTER]
+gcode:
+   {action_call_remote_method("set_device_power", device="printer", state="off")}
+```
 After that we would need to create a delayed gcode macro. In this macro will add logic that will check if both the bed and the hot end are below 50 degrees Celsius. If you start printing or start heating up the bed or hot end the automatic shutdown will be stopped. 
 ```
 [delayed_gcode POWER_OFF_PRINTER_CHECK]
