@@ -11,11 +11,11 @@ type: tasmota
 address: 192.168.0.12
 password: ******
 ```
-   Example of ```moonraker.conf``` for remote ON-OFF control of the printer using **Relay** and **GPIO** (pin: PC8 on Bigtreetech Pi V1.2):
+   Example of ```moonraker.conf``` for remote ON-OFF control of the printer using **Relay** and **GPIO**:
 ```
 [power printer]
 type: gpio
-pin: gpiochip0/gpio72              # can be revesed by "!" , BTT-PI GPIO pin PC8
+pin: gpiochip0/gpio72              # can be revesed by "!" , Bigtreetech Pi V1.2 GPIO pin PC8
 initial_state: off  
 off_when_shutdown: True            # Turning off when a shutdown/error occurs 
 locked_while_printing: True        # Preventing you from turning it off during a print
@@ -102,4 +102,4 @@ gcode:
       UPDATE_DELAYED_GCODE ID=POWER_OFF_PRINTER_CHECK_ACT DURATION=60
    {% endif %}
 ```
-By clicking running Activate Power Off macro while the printer is running the macro will check every 60 seconds if the printer has finished. 
+By clicking running ```ACTIVATE_POWER_OFF``` macro while the printer is running the macro will check every 60 seconds if the printer has finished. 
