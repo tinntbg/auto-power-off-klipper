@@ -33,7 +33,7 @@ gcode:
                              device="tasmota_plug",
                              state="off")}
 ```
-   Or for ON-OFF control using a Relay then:
+   Or for remote ON-OFF control of the Printer using a Relay:
 ```
 [gcode_macro _POWER_OFF_PRINTER]
 gcode:
