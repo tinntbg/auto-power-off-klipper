@@ -11,7 +11,7 @@ type: tasmota
 address: 192.168.0.12
 password: ******
 ```
-   Example of Moonraker config for **Relay** controlled via **GPIO** (pin: PC8 on Bigtreetech Pi V1.2):
+   Example of ```moonraker.conf``` for remote ON-OFF control of the printer using **Relay** and **GPIO** (pin: PC8 on Bigtreetech Pi V1.2):
 ```
 [power printer]
 type: gpio
@@ -33,7 +33,7 @@ gcode:
                              device="tasmota_plug",
                              state="off")}
 ```
-   Or for remote ON-OFF control of the Printer using a Relay:
+   Or for control using **Relay** then:
 ```
 [gcode_macro _POWER_OFF_PRINTER]
 gcode:
