@@ -11,7 +11,18 @@ type: tasmota
 address: 192.168.0.12
 password: ******
 ```
-
+   Example of Moonraker configuration for **Relay** controlled via **GPIO** (pin: PC8 on Bigtreetech Pi V1.2):
+```
+[power printer]
+type: gpio
+pin: gpiochip0/gpio72              # can be revesed by "!" , BTT-PI GPIO pin PC8
+initial_state: off  
+off_when_shutdown: True            # Turning off when a shutdown/error occurs 
+locked_while_printing: True        # Preventing you from turning it off during a print
+restart_klipper_when_powered: True
+restart_delay: 1
+bound_service: klipper             # Making sure the Klipper service is started/restarted with the toggle
+```
 # Klipper configuration
 Then we would need to configure klipper, by first testing connecting the wifi socket. I have personally created a hidden Macro for this:
 
