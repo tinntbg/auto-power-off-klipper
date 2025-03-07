@@ -11,7 +11,7 @@ type: tasmota
 address: 192.168.0.12
 password: ******
 ```
-   Example of Moonraker configuration for **Relay** controlled via **GPIO** (pin: PC8 on Bigtreetech Pi V1.2):
+   Example of Moonraker config for **Relay** controlled via **GPIO** (pin: PC8 on Bigtreetech Pi V1.2):
 ```
 [power printer]
 type: gpio
