@@ -24,6 +24,20 @@ restart_delay: 1
 bound_service: klipper             # Making sure the Klipper service is started/restarted with the toggle
 ```
 # Klipper configuration
+In order for the functionality to work you would need to have M118 enabled, this is done by adding the following to you printer.cfg file:
+```
+[respond]
+#default_type: echo
+#   Sets the default prefix of the "M118" and "RESPOND" output to one
+#   of the following:
+#       echo: "echo: " (This is the default)
+#       command: "// "
+#       error: "!! "
+#default_prefix: echo:
+#   Directly sets the default prefix. If present, this value will
+#   override the "default_type".
+```
+
 Then we would need to configure klipper, by first testing connecting the wifi socket. I have personally created a hidden Macro for this:
 
 ```
